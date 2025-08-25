@@ -7,14 +7,11 @@ import (
 
 func main() {
 	var wa sync.WaitGroup
-	var mu sync.Mutex
 	for i := 1; i <= 5; i++ {
 		wa.Add(1)
 		go func(i int) {
 			defer wa.Done()
-			mu.Lock()
 			fmt.Println(i)
-			mu.Unlock()
 		}(i)
 	}
 	wa.Wait()
